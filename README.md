@@ -129,9 +129,7 @@ This is basically running the inference using the rknn model on your host machin
       
   c) Now move your best.pt file from the weights folder of your training run to the base directory of yolov5 and run the export command to obtain the corresponding .onnx model with opset 12
   
-      ```
         python export.py --weights best.pt --img 640 --batch 1 --include onnx --opset 12
-      ```
   d) The model file best.onnx will be in the current folder. Check whether the model is correct in [Netron](https://netron.app/). Click the menu in the upper left corner and then Properties. There should be 3 output layers similar to below
   
   ![image](https://github.com/programmeddeath1/custom_yolov5_npu_rk3588/assets/44861370/1d7264bd-dbcd-47d7-9167-6450e8906ad2)
@@ -169,7 +167,7 @@ This is basically running the inference using the rknn model on your host machin
           
   If you get a cmake error about cmake compiler version run the following command and try again
   
-      sudo apt-get install gcc-aarch64-linux-gnu
+      sudo apt-get install cmake gcc-aarch64-linux-gnu
     
   This will create a build/ folder and install/ folder. Now zip this install folder along with your rknn model from /rknpu2/examples/rknn_yolov5_demo/convert_rknn_demo/yolov5/rknn_models folder and your test images. Copy this zip file to your Opi board
 #### D) Inference on the OPi
