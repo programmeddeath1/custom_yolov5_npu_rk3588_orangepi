@@ -127,7 +127,7 @@ This is basically running the inference using the rknn model on your host machin
    
       shape = tuple(y[0].shape)  # model output shape
       
-  c) Now move your best.pt file from the weights folder of your training run to the base directory of yolov6 and run the export command to obtain the corresponding .onnx model with opset 12
+  c) Now move your best.pt file from the weights folder of your training run to the base directory of yolov5 and run the export command to obtain the corresponding .onnx model with opset 12
   
       ```
         python export.py --weights best.pt --img 640 --batch 1 --include onnx --opset 12
@@ -137,7 +137,8 @@ This is basically running the inference using the rknn model on your host machin
   ![image](https://github.com/programmeddeath1/custom_yolov5_npu_rk3588/assets/44861370/1d7264bd-dbcd-47d7-9167-6450e8906ad2)
     
   e) We will now convert the onnx model to rknn.
-     Enter /rknpu2/examples/rknn_yolov5_demo_v5/convert_rknn_demo/yolov5  directory and modify onnx2rknn.py. You can open this with the docker option in vscode left menu. Check your rknn_host_docker container and navigate to onnx2rknn.py
+    Enter /rknpu2/examples/rknn_yolov5_demo/convert_rknn_demo/yolov5  directory and modify onnx2rknn.py. You can open this with the docker option in vscode left menu. Check your rknn_host_docker container and navigate to onnx2rknn.py. 
+    Move your converted best.onnx model to this folder
       
   ![image](https://github.com/programmeddeath1/custom_yolov5_npu_rk3588/assets/44861370/09ecafc6-72a1-494e-9a3e-b69398593f36)
       
@@ -166,6 +167,10 @@ This is basically running the inference using the rknn model on your host machin
       chmod +x build-linux_RK3588.sh
       ./build-linux_RK3588.sh
           
+  If you get a cmake error about cmake compiler version run the following command and try again
+  
+      sudo apt-get install gcc-aarch64-linux-gnu
+    
   This will create a build/ folder and install/ folder. Now zip this install folder along with your rknn model from /rknpu2/examples/rknn_yolov5_demo/convert_rknn_demo/yolov5/rknn_models folder and your test images. Copy this zip file to your Opi board
 #### D) Inference on the OPi
   i) unzip your install/model folder in OPi, and give execute access to install/rknn_yolov5_demo_linux/rknn_yolov5_demo and finally run on your test images.
