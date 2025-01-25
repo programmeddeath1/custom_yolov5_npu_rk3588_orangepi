@@ -167,7 +167,9 @@ This is basically running the inference using the rknn model on your host machin
           
   If you get a cmake error about cmake compiler version run the following command and try again
   
-      sudo apt-get install cmake gcc-aarch64-linux-gnu
+      sudo apt-get install cmake gcc-aarch64-linux-gnu 
+      or
+      sudo apt install g++-aarch64-linux-gnu
     
   This will create a build/ folder and install/ folder. Now zip this install folder along with your rknn model from /rknpu2/examples/rknn_yolov5_demo/convert_rknn_demo/yolov5/rknn_models folder and your test images. Copy this zip file to your Opi board
 #### D) Inference on the OPi
